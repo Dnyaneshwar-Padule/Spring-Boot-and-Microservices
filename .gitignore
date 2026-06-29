@@ -1,16 +1,16 @@
-# Compiled class file
+# === Java Compiled & Crash Files ===
 *.class
+hs_err_pid*
+replay_pid*
 
-# Log file
+# === Log Files ===
 *.log
 
-# BlueJ files
+# === BlueJ & J2ME Files ===
 *.ctxt
-
-# Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
+# === Package Files (Use caution with zip/rar) ===
 *.jar
 *.war
 *.nar
@@ -19,35 +19,24 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
-
-
-# === Build Directories ===
-/bin/
-/target/
-/out/
-
+# === Build Directories (FIXED: Works anywhere in the project) ===
+bin/
+target/
+out/
+build/
 
 # === Eclipse Files ===
 .project
 .classpath
 .settings/
-
+.metadata/
+Eclipse/
 
 # === Maven or Gradle Wrapper ===
 .mvn/
 .gradle/
-build/
 
-# === Optional: ignore environment config ===
+# === Environment Configuration ===
 *.env
-*.properties
-
-
-# Eclipse files
-.metadata/
-
-#Eclipse IDE
-/Eclipse
+# Disabled globally to prevent breaking sub-module build properties
+# *.properties 
