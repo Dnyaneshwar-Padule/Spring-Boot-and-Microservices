@@ -22,3 +22,32 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+
+# === Build Directories ===
+/bin/
+/target/
+/out/
+
+
+# === Eclipse Files ===
+.project
+.classpath
+.settings/
+
+
+# === Maven or Gradle Wrapper ===
+.mvn/
+.gradle/
+build/
+
+# === Optional: ignore environment config ===
+*.env
+*.properties
+
+
+# Eclipse files
+.metadata/
+
+#Eclipse IDE
+/Eclipse
