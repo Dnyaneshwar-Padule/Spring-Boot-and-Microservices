@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class Car implements Vehicle, BeanNameAware {
 	
 	@Autowired
-	@Qualifier("cngEngine")
+//	@Qualifier("cngEngine")
 	private Engine engine;
 	
 	@Override
