@@ -2,28 +2,19 @@ package com.tca.beans;
 
 public class Travel {
 
-	private Vehicle vehicle;
+	private Vehicle car;
 
-	
-	public void setBike(Vehicle vehicle) {
-		this.vehicle = vehicle;
-	}
-	
-	public Vehicle getBike() {
-		return vehicle;
-	}
 	
 	public void setCar(Vehicle vehicle) {
-		this.vehicle = vehicle;
+		this.car = vehicle;
 	}
-
-
-	public Vehicle getCar() {
-		return vehicle;
+	
+	public Vehicle setCar() {
+		return car;
 	}
 	
 	public void startJourney() {
-		vehicle.run();
+		car.run();
 	}
 	
 }
