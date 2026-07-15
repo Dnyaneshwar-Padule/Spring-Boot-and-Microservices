@@ -26,6 +26,7 @@ public class AppConfig {
 	
 	@Bean
 	public InputStreamReader consoleReader() {
+//		System.out.println("AppConfig.consoleReader()");
 		return new InputStreamReader(System.in);
 	}
 }
