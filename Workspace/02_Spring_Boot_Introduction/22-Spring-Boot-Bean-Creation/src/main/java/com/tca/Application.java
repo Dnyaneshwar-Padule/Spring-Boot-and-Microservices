@@ -13,7 +13,7 @@ public class Application {
 
         ConfigurableApplicationContext context =  SpringApplication.run(Application.class, args);
         System.out.println("Container name : " + context.getClass().getName());
-        
+
         context.close();
     }
     /*
