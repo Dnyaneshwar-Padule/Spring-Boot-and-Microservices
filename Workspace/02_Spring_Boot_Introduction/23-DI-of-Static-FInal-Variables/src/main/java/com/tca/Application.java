@@ -55,7 +55,7 @@ public class Application{
             they are different for each object (i.e. every object has it's own final field with unique value)
             they can be autowired with
                 - Field Injection
-                - Constructor Injection 
+                - Constructor Injection
             setter injection can't be used for final as the object is already initialized....
 
      */
