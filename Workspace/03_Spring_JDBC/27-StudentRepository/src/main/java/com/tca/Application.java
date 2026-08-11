@@ -25,12 +25,15 @@ public class Application {
         student.setRno(1);
         student.setPer(87.0);
 
-        // System.out.println(studentRepository.save(student));
+         System.out.println(studentRepository.save(student));
 
         //System.out.println( studentRepository.update(student) );
 
+        System.out.println(studentRepository.getByRno(1));
+
         System.out.println( studentRepository.delete(student) );
 
+        System.out.println(studentRepository.getAll());
 
     }
 
