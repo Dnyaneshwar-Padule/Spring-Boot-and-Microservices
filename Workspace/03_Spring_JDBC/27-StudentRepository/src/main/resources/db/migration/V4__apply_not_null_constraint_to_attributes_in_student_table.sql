@@ -1,0 +1,5 @@
+ALTER TABLE student
+MODIFY COLUMN name varchar(32) NOT NULL;
+
+ALTER TABLE student
+MODIFY COLUMN city varchar(32) NOT NULL;
