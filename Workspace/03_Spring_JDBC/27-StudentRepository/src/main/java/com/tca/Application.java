@@ -22,16 +22,19 @@ public class Application {
 //        student.setPer(77.0);
 
         student.setName("Shreekant");
-        student.setRno(4);
+        student.setRno(1);
         student.setPer(87.0);
+        student.setCity("Pune");
 
          System.out.println(studentRepository.save(student));
 
         //System.out.println( studentRepository.update(student) );
 
-        System.out.println(studentRepository.getByRno(4));
+        System.out.println(studentRepository.getByRno(1));
+        System.out.println("By city (Pune) : " + studentRepository.getByCity("Pune"));
 
         System.out.println( studentRepository.delete(student) );
+
 
         System.out.println(studentRepository.getAll());
 

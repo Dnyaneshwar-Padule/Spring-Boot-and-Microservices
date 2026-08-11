@@ -6,12 +6,12 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class DatabaseCreate implements ApplicationRunner {
 
     private JdbcTemplate template;
 
-    @Autowired
+//    @Autowired
     public DatabaseCreate(JdbcTemplate  template){
         this.template = template;
     }

@@ -17,8 +17,8 @@ public class StudentRepository {
     }
 
     public boolean save(Student student){
-        final String saveSQL = "INSERT INTO student VALUES(?,?,?)";
-        return template.update(saveSQL, student.getRno(), student.getName(), student.getPer()) == 1;
+        final String saveSQL = "INSERT INTO student VALUES(?,?,?,?)";
+        return template.update(saveSQL, student.getRno(), student.getName(), student.getPer(), student.getCity()) == 1;
     }
 
     public int delete(Student student){
@@ -27,29 +27,28 @@ public class StudentRepository {
     }
 
     public int update(Student student){
-        final String updateSQL = "UPDATE student SET name = ?, per = ? WHERE rno = ?";
-        return template.update(updateSQL, student.getName(), student.getPer(), student.getRno());
+        final String updateSQL = "UPDATE student SET name = ?, per = ?, city = ? WHERE rno = ?";
+        return template.update(updateSQL, student.getName(), student.getPer(), student.getCity(), student.getRno());
     }
 
-    /*
+
     // No city field in Student Entity
     public int deleteByCity(String city){
         final String deleteSQL = "DELETE from student WHERE city = ?";
         return template.update(deleteSQL, city);
     }
-    */
+
 
     public Map<String, Object> getByRno(Integer rno){
         final String query = "SELECT * FROM student WHERE rno = ?";
         return template.queryForMap(query, rno);
     }
 
-    /*
     public List<Map<String, Object>> getByCity(String city){
         final String query = "SELECT * FROM student WHERE city = ?";
         return template.queryForList(query, city);
     }
-     */
+
 
     public List<Map<String, Object>> getAll(){
         final String query = "SELECT * FROM student";

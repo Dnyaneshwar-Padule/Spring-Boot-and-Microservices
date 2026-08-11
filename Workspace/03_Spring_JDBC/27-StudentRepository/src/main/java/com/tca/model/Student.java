@@ -5,6 +5,15 @@ public class Student {
     private Integer rno;
     private String name;
     private Double per;
+    private String city;
+
+    public String getCity(){
+        return city;
+    }
+
+    public void setCity(String city){
+        this.city = city;
+    }
 
     public void setRno(Integer rno) {
         this.rno = rno;
