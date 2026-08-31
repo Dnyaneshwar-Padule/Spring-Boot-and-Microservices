@@ -10,6 +10,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Component
 public class MyRunner implements ApplicationRunner {
@@ -24,5 +25,9 @@ public class MyRunner implements ApplicationRunner {
 
         s = studentService.save(s);
         System.out.println("Student is saved successfully !");
+
+        for(Student student : studentService.findAll()){
+            System.out.println(student);
+        }
     }
 }
