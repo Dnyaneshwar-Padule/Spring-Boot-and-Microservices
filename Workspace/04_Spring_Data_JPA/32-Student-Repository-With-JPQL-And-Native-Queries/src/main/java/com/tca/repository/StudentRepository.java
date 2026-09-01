@@ -2,7 +2,9 @@ package com.tca.repository;
 
 import com.tca.entity.Gender;
 import com.tca.entity.Student;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -29,7 +31,34 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
                like, @Param("studentName") String name
                and then use that parameter name inside query with :
                like :studentName
+
+
+            1. @Modifying
+                Marks the repository method as a data-modifying operation (INSERT, UPDATE, DELETE).
+                Without this, Spring Data JPA treats @Query methods as read-only SELECT queries and rejects any DML attempt at runtime.
+
+            2. @Transactional
+                wraps the method execution in a database transaction.
+                Hibernate requires a transaction context for any INSERT, UPDATE, or DELETE operation
+
      */
+
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Student s WHERE s.per < :per AND s.city = :city ")
+    public void deleteByPerSmallerThanAndCity(@Param("per") Double per, @Param("city") String city );
+
+
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Student s SET s.per = :newPer WHERE s.city = :city AND s.gender = :gender ")
+    public void updatePerByGenderAndCity(@Param("newPer") Double newPer, @Param("gender") Gender gender, @Param("city") String city);
+
+
+
+
+
 
     /* Find all students whose percentage is greater than 75. */
     @Query("SELECT s FROM Student s WHERE s.per > :per")    // JPQL
@@ -425,5 +454,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
             nativeQuery = true
     )
     public List<Student> getByPerGreaterThanAvgPerOfSameCityHavingStudentCountGreaterThanEqual(@Param("studentCount") Integer studentCount);
+
+
 
 }
