@@ -39,6 +39,15 @@ import java.util.Locale;
         query = "SELECT s.gender , COUNT(s) count FROM Student s GROUP BY s.gender"
 )
 
+@NamedQuery(
+        name = "Student.deleteByNameAndCity",
+        query = "DELETE FROM Student s WHERE s.name = :name AND s.city = :city"
+)
+
+@NamedQuery(
+        name = "Student.deleteByGenderAndBirthDate",
+        query = "DELETE FROM Student s WHERE s.gender = :gender AND s.birthDate = :birthDate"
+)
 
 
 public class Student {
