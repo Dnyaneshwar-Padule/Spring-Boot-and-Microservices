@@ -10,23 +10,44 @@ import java.util.Locale;
 @Entity
 
 @NamedQuery(
-        name="Student.fetchByNameAndCity",
+        name = "Student.fetchByNameAndCity",
         query = "SELECT s FROM Student s WHERE s.name = :name AND s.city = :city"
 )
 
-@NamedQuery(
-        name="Student.fetchByCityAndGender",
-        query="SELECT s FROM Student s WHERE s.city = :city AND s.gender = :gender"
+@NamedNativeQuery(
+        name = "Student.findByNameAndCity",
+        query = "SELECT * FROM Student WHERE NAME = :name AND CITY = :city"
 )
+
+@NamedQuery(
+        name = "Student.fetchByCityAndGender",
+        query = "SELECT s FROM Student s WHERE s.city = :city AND s.gender = :gender"
+)
+
+@NamedNativeQuery(
+        name = "Student.findByCityAndGender",
+        query = "SELECT * FROM Student WHERE CITY = :city and GENDER = :gender"
+)
+
 
 @NamedQuery(
         name = "Student.fetchAllByPerGreaterThanAndGender",
         query = "SELECT s From Student s WHERE s.per > :per AND s.gender = :gender"
 )
 
+@NamedNativeQuery(
+        name = "Student.findAllByPerGreaterThanAndGender",
+        query = "SELCT * FORM Student WHERE PER > :per AND GENDER = :gender"
+)
+
 @NamedQuery(
-        name="Student.updateName",
+        name = "Student.updateName",
         query = "UPDATE Student s SET s.name = :newName WHERE s.id = :id"
+)
+
+@NamedNativeQuery(
+        name = "Student.modifyName",
+        query = "UPDATE Student SET NAME = :newName WHERE ID = :id"
 )
 
 @NamedQuery(
@@ -37,6 +58,11 @@ import java.util.Locale;
 @NamedQuery(
         name = "Student.countByGender",
         query = "SELECT s.gender , COUNT(s) count FROM Student s GROUP BY s.gender"
+)
+
+@NamedNativeQuery(
+        name = "Student.getCountByGender",
+        query = "SELECT GENDER , COUNT(*) count FROM Student  GROUP BY GENDER"
 )
 
 @NamedQuery(
