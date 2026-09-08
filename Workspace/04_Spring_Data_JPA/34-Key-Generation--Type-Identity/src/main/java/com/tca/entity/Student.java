@@ -16,7 +16,10 @@ public class Student {
     @Column(name = "NAME", length = 32, nullable = false)
     private String name;
 
-    @Column(name = "PER", columnDefinition = "CHECK(PER >= 0 AND PER <= 100)")
+    /*
+        For mySQL columnDefinition to add CHECK constraint should start with FLOAT (it does not have double data type)
+    * */
+    @Column(name = "PER", columnDefinition = "FLOAT CHECK(PER >= 0 AND PER <= 100)")
     private Double per;
 
     @Column(name="CITY", nullable = false, length = 32)
