@@ -12,11 +12,16 @@ public class Student {
     @TableGenerator(
             /* Spring Boot Name for generator */ name = "pk_generator",
             /* primary key allocation size */ allocationSize = 50,
-            /* Starting/Initial value */ initialValue = 1,
+            /* Starting/Initial value */ initialValue = 0,
             /* Database side attribute name which will be used to store primary key */ pkColumnName = "entity",
             pkColumnValue = "student_pk",
             table = "key_generator",
             valueColumnName = "last_value"
+
+            /*
+                Note: Keys starts being used from (initialValue + 1)
+                    if initialValue is 1, the keys will be used from 2
+            */
 
             /*
                 Above table generator will create a table in the database like this
