@@ -29,7 +29,7 @@ public class Customer {
     // One-To-Many connection
     // User -> Orders
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE} )
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE} )
     @JoinColumn(name = "CUSTOMER_ID")
     /*
         This is database side table, it will be created in ORDER TABLE, it's the Foreign Key in ORDER TABLE

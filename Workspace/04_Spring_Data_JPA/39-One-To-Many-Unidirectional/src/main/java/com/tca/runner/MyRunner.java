@@ -10,6 +10,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,9 +37,28 @@ public class MyRunner implements ApplicationRunner {
 //        ) );
 //        customerService.save(customer);
 
-        Optional<Customer> customer = customerService.getById(3L);
+//        Optional<Customer> customer = customerService.getById(4L);
+//        customer.ifPresent(System.out::println);
+//        customer.get().setOrders(
+//                List.of(new Order(103L, 350.0, "Chicken Biryani", OrderStatus.CANCELLED, LocalDate.now()))
+//        );
+
+//        customer.ifPresent(customerService::delete);
+
+
+//        Customer customer = new Customer();
+//        customer.setAddress("Pune");
+//        customer.setEmail("dummydeva@demo.com");
+//        customer.setName("Deva");
+//        customerService.save(customer);
+
+        Optional<Customer> customer = customerService.getById(8L);
         customer.ifPresent(System.out::println);
-        customer.ifPresent(customerService::delete);
+        List<Order> l = new ArrayList<Order>();
+        l.add(new Order(104L, 350.0, "Chicken Biryani", OrderStatus.DELIVERED, LocalDate.now()));
+        customer.get().setOrders(l);
+
+        customerService.save(customer.get());
 
     }
 }
