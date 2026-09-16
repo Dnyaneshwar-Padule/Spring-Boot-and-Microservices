@@ -27,9 +27,10 @@ public class Customer {
     private String email;
 
     @OneToMany(
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+            cascade = {CascadeType.ALL},
             mappedBy = "customer", /* reference variable name in Order entity which refers to Customer (private Customer customer, in Order entity) */
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            orphanRemoval = false
     )
     private List<Order> orders;
 }

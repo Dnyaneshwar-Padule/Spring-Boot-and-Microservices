@@ -12,5 +12,7 @@ public interface OrderService {
     public Order save(Order order, Customer customer);
 
     public void delete(Order order);
+
+    public void softDelete(Long id);
 }
 

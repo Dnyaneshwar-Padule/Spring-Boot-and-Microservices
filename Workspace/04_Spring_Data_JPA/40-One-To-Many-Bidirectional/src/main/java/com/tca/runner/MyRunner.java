@@ -85,33 +85,46 @@ public class MyRunner implements ApplicationRunner {
         }
          */
 
+
+
+        /// //////////////////////////////////////////////////////////////////////////////////////////////
+        // ###############################################################################################
+        /// //////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
         /// //////////////////////////////////////////////////
         // ASSIGNMENT
         // Delete order, but customer should not get deleted.
         /// //////////////////////////////////////////////////
 
-        /////////////
-        // Option 1
-        // don't delete order record too, dereference the customer_id, i.e. make customer_id null for that order
-        // Can be achieved easily by making orphanRemoval=false in Customer entity
-        // step 1 : fetch customer   (  Customer customer = customerService.getById(1L).orElse(null)    )
-        // step 2 : fetch orders     (   List<Order> orders = customer.getOrders()                      )
-        // step 3 : remove order from  orders list  (    orders.remove(1)     )
-        /// ////////
-
-
         /// //////////
-        // Option 2
+        // Option 1
         // delete order but don't cascade the change, i.e. don't cascade on delete
         // To do this, don't use  CascadeType.REMOVE or  CascadeType.ALL in Order entity
-        // Order o1 = orderService.getById(1L).orElse(null);
-        // orderService.delete(o1);
-        // Customer customer = customerService.getById(1L).orElse(null);
-        // System.out.println(customer.getId());
+        //      Order o1 = orderService.getById(1L).orElse(null);
+        //      orderService.delete(o1);
+        //      Customer customer = customerService.getById(1L).orElse(null);
+        //      System.out.println(customer.getId());
         // Order is deleted, but customer isn't
         /// //////////
 
 
+        /////////////
+        // Option 2
+        // don't delete order record too, dereference the customer_id, i.e. make customer_id null for that order
+        /////////
+        //
+        // One way to achieve is with custom method.
+        //      Customer customer = customerService.getById(1L).orElse(null);
+        //      orderService.softDelete(customer.getOrders().get(0).getId());  /* refer OrderRepository */
+        //
+        // Another way, break relationship from both sides
+        //      Customer customer = customerService.getById(1L).orElse(null);  // fetch customer
+        //      Order o = customer.getOrders().get(0);       /* get one order reference */
+        //      o.setCustomer(null);                         /* break relationship from order side */
+        //      customer.getOrders().remove(o);             /* do same from customer side */
+        /// ///////////////////////
 
     }
 }

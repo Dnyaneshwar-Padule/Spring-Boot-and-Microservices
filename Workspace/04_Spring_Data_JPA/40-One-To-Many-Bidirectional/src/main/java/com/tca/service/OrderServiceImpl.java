@@ -35,4 +35,9 @@ public class OrderServiceImpl implements OrderService{
         orderRepository.delete(order);
     }
 
+    @Override
+    public void softDelete(Long id) {
+        orderRepository.softDelete(id);
+    }
+
 }
