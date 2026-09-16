@@ -28,7 +28,9 @@ public class MyRunner implements ApplicationRunner {
     @Transactional
     public void run(ApplicationArguments args) throws Exception {
 
+        /// //////////////////////////////////////////////////
         /* #####   Customer created account    #########  */
+        /// //////////////////////////////////////////////////
         /*
         //Save one customer record.
         Customer customer = new Customer();
@@ -41,7 +43,9 @@ public class MyRunner implements ApplicationRunner {
         */
 
 
+        /// //////////////////////////////////////////////
         /* #### Customer placing orders  ####  */
+        /// /////////////////////////////////////////////
         /*
         // fetch record of above customer
         Customer customer = customerService.getById(1L).orElse(null);
@@ -64,18 +68,50 @@ public class MyRunner implements ApplicationRunner {
         orderService.save(o2, customer);
         */
 
+        /// //////////////////////////////////////////////////
         /* ##### Customer changed his mind....... ##### */
+        /// ///////////////////////////////////////////////////
+        /*
         // fetch customer record (with id 1L)
         Customer customer = customerService.getById(1L).orElse(null);
 
         // Get order details and update status of 1st Order, as canceled
-        for(Order o : customer.getOrders()){ // may throw NullPointerException is there are no orders, but for now, we know there are 2 orders
+        for(Order o : customer.getOrders()){ // may throw NullPointerException if there are no orders, but for now, we know there are 2 orders
             if(o.getId() == 1L){
                 o.setOrderStatus(OrderStatus.CANCELLED);
                 orderService.save(o, customer);
                 break;
             }
         }
+         */
+
+        /// //////////////////////////////////////////////////
+        // ASSIGNMENT
+        // Delete order, but customer should not get deleted.
+        /// //////////////////////////////////////////////////
+
+        /////////////
+        // Option 1
+        // don't delete order record too, dereference the customer_id, i.e. make customer_id null for that order
+        // Can be achieved easily by making orphanRemoval=false in Customer entity
+        // step 1 : fetch customer   (  Customer customer = customerService.getById(1L).orElse(null)    )
+        // step 2 : fetch orders     (   List<Order> orders = customer.getOrders()                      )
+        // step 3 : remove order from  orders list  (    orders.remove(1)     )
+        /// ////////
+
+
+        /// //////////
+        // Option 2
+        // delete order but don't cascade the change, i.e. don't cascade on delete
+        // To do this, don't use  CascadeType.REMOVE or  CascadeType.ALL in Order entity
+        // Order o1 = orderService.getById(1L).orElse(null);
+        // orderService.delete(o1);
+        // Customer customer = customerService.getById(1L).orElse(null);
+        // System.out.println(customer.getId());
+        // Order is deleted, but customer isn't
+        /// //////////
+
+
 
     }
 }

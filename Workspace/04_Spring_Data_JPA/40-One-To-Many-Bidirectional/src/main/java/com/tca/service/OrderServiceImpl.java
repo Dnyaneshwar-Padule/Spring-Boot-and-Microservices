@@ -29,4 +29,10 @@ public class OrderServiceImpl implements OrderService{
         order.setCustomer(customer);
         return orderRepository.save(order);
     }
+
+    @Override
+    public void delete(Order order) {
+        orderRepository.delete(order);
+    }
+
 }
