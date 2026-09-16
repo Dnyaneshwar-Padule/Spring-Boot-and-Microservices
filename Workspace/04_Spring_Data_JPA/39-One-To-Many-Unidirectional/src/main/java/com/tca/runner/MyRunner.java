@@ -3,7 +3,9 @@ package com.tca.runner;
 import com.tca.entity.Customer;
 import com.tca.entity.Order;
 import com.tca.entity.OrderStatus;
+import com.tca.repository.OrderRepository;
 import com.tca.service.CustomerService;
+import com.tca.service.OrderService;
 import jakarta.transaction.Transactional;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -19,8 +21,11 @@ public class MyRunner implements ApplicationRunner {
 
     private final CustomerService customerService;
 
-    public MyRunner(CustomerService customerService) {
+    private final OrderService orderService;
+
+    public MyRunner(CustomerService customerService, OrderService orderService) {
         this.customerService = customerService;
+        this.orderService = orderService;
     }
 
 
@@ -51,14 +56,17 @@ public class MyRunner implements ApplicationRunner {
 //        customer.setEmail("dummydeva@demo.com");
 //        customer.setName("Deva");
 //        customerService.save(customer);
+//
+//        Optional<Customer> customer = customerService.getById(8L);
+//        List<Order> l = new ArrayList<Order>();
+//        l.add(new Order(104L, 350.0, "Chicken Biryani", OrderStatus.DELIVERED, LocalDate.now()));
+//        customer.get().setOrders(l);
+//
+//        customerService.save(customer.get());
 
-        Optional<Customer> customer = customerService.getById(8L);
-        customer.ifPresent(System.out::println);
-        List<Order> l = new ArrayList<Order>();
-        l.add(new Order(104L, 350.0, "Chicken Biryani", OrderStatus.DELIVERED, LocalDate.now()));
-        customer.get().setOrders(l);
-
-        customerService.save(customer.get());
-
+        Optional<Order> o = orderService.getById(103L);
+        o.ifPresent(System.out::println);
+        o.get().setOrderStatus(OrderStatus.REFUNDED);
+        o.ifPresent(System.out::println);
     }
 }

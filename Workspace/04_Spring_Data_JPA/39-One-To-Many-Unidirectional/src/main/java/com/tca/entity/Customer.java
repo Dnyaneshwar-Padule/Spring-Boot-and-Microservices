@@ -29,12 +29,22 @@ public class Customer {
     // One-To-Many connection
     // User -> Orders
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE} )
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE}, orphanRemoval = true )
     @JoinColumn(name = "CUSTOMER_ID")
     /*
         This is database side table, it will be created in ORDER TABLE, it's the Foreign Key in ORDER TABLE
         Usually, we write @JoinColumn in at @ManyToOne (the entity which owns the relationship), but since it is unidirectional
         we can't write it in the Order (Relationship owning entity), so we have to write it here.
+
+        orphanRemoval:
+            by default it is false.
+            true:
+                If we remove an order from orders (list), then that order is removed from the database too (from orders table)
+            false:
+                If we remove an order from the orders (list), then for that order the customer_id becomes null,
+                the order remains in the table, but the customer_id becoes null
+
+            * An order without customer_id makes no sense.....
      */
     private List<Order> orders;
 
