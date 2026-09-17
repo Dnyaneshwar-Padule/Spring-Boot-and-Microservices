@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -46,5 +47,5 @@ public class Author {
             joinColumns = @JoinColumn(name = "AUTHOR_ID"), /* Foreign key referring Author.id */
             inverseJoinColumns = @JoinColumn(name = "BOOK_ID") /* Foreign key referring Book.id */
     )
-    private List<Book> books;
+    private List<Book> books = new ArrayList<>();
 }
