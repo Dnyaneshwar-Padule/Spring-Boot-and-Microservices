@@ -9,5 +9,6 @@ public enum Genre {
     MYSTERY,
     ROMANCE,
     HORROR,
-    HISTORY
+    HISTORY,
+    EDUCATION
 }
