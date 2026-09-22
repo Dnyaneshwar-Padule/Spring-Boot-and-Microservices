@@ -3,9 +3,11 @@ package com.tca.service;
 import com.tca.entity.Customer;
 import com.tca.entity.Order;
 import com.tca.entity.OrderItem;
+import com.tca.entity.OrderStatus;
 import com.tca.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +23,14 @@ public class OrderServiceImpl  implements  OrderService{
     @Override
     public Order placeOrder(Customer customer, List<OrderItem> cartItems) {
         Order order = new Order();
-        order.setOrderItems(cartItems);
+        order.setOrderStatus(OrderStatus.ORDERED);
         order.setCustomer(customer);
+        order.setOrderDate(LocalDate.now());
+        
+        for(OrderItem orderItem : cartItems){
+            order.addOrderItem(orderItem);
+        }
+
         orderRepository.save(order);
         return order;
     }

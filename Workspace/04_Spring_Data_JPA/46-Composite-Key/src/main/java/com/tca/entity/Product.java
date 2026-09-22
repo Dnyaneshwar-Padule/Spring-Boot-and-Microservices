@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -37,5 +38,13 @@ public class Product {
             mappedBy = "product"
 
     )
-    private List<OrderItem> orderItems;
+    private List<OrderItem> orderItems = new ArrayList<>();
+
+    public void addOrderItem(OrderItem orderItem){
+        if(orderItem == null)
+            return;
+        orderItems.add(orderItem);
+        orderItem.setProduct(this);
+    }
+
 }

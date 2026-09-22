@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -40,6 +41,13 @@ public class Customer {
             fetch = FetchType.LAZY,
         mappedBy = "customer"
     )
-    private List<Order> orders;
+    private List<Order> orders = new ArrayList<>();
+
+    public void addOrder(Order order){
+        if(order == null)
+            return;
+        orders.add(order);
+        order.setCustomer(this);
+    }
 
 }

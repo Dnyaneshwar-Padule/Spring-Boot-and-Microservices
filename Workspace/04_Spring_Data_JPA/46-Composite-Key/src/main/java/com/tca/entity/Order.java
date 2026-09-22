@@ -22,6 +22,7 @@ public class Order {
 
     private LocalDate orderDate;
 
+    @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
     @ManyToOne(
@@ -46,6 +47,13 @@ public class Order {
             fetch = FetchType.LAZY,
             mappedBy = "order"
     )
-    private List<OrderItem> orderItems;
+    private List<OrderItem> orderItems = new ArrayList<>();
+
+    public void addOrderItem(OrderItem orderItem){
+        if(orderItem == null)
+            return;
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
 
 }
