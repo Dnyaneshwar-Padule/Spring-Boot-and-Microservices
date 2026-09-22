@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.tca</groupId>
-    <artifactId>44-Transient</artifactId>
+    <artifactId>45-Transient</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>44-Transient</name>
     <description>44-Transient</description>
