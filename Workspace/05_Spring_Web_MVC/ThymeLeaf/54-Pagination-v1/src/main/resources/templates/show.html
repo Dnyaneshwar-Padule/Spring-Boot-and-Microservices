@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>Employees</h3>
+
+    <table border="1">
+        <tr>
+            <th>EMP_ID</th><th>EMP_NAME</th><th>EMP_SALARY</th><th>EMP_CITY</th>
+        </tr>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.id}"></td>
+            <td th:text="${employee.name}"></td>
+            <td th:text="${employee.salary}"></td>
+            <td th:text="${employee.city}"></td>
+        </tr>
+    </table>
+
+    <div>
+        <span th:if="${hasPrevious}">
+            <!-- @{URL}
+                 @{ URL(REQUEST_PARAMETERS) }
+                 @{ URL( ${MODEL_ATTRIBUTE} ) }
+             -->
+            <a th:href="@{/getAll(page=${currentPage - 1})}">Previous</a>
+        </span>
+        <span th:if="${hasNext}">
+            <a th:href="@{/getAll(page=${currentPage + 1})}">Next</a>
+        </span>
+    </div>
+
+
+</body>
+</html>
