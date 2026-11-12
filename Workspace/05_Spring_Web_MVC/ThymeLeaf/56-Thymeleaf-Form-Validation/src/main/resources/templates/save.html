@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <form th:object="${student}" method="post" th:action="@{/save}">
+
+        <label for="name">Name: </label>
+        <input id="name" type="text" th:field="*{name}"/>
+        <span style="color: red;"
+            th:if="${#fields.hasErrors('name')}"
+            th:errors="*{name}"></span>
+        <br>
+
+        <label for="per">Percentage: </label>
+        <input type="number" th:field="*{per}" id="per"/>
+        <span style="color: red;"
+              th:if="${#fields.hasErrors('per')}"
+              th:errors="*{per}"></span>
+        <br>
+
+        <label for="city">City: </label>
+        <input type="text" th:field="*{city}" id="city">
+        <span style="color: red;"
+              th:if="${#fields.hasErrors('city')}"
+              th:errors="*{city}"></span>
+        <br>
+
+        <label for="email">Email Id: </label>
+        <input type="text" th:field="*{email}" id = "email"/>
+        <span style="color: red;"
+              th:if="${#fields.hasErrors('email')}"
+              th:errors="*{email}"></span>
+        <br>
+
+        <label for="phone">Phone no. :</label>
+        <input type="text" th:field="*{phone}" id="phone" />
+        <span style="color: red;"
+              th:if="${#fields.hasErrors('phone')}"
+              th:errors="*{phone}"></span>
+        <br>
+
+        <label for="birthDate">Birth Date :</label>
+        <input type="date" th:field="*{birthDate}" id="birthDate"/>
+        <span style="color: red;"
+              th:if="${#fields.hasErrors('birthDate')}"
+              th:errors="*{birthDate}"></span>
+        <br>
+
+        <input type="submit"/>
+    </form>
+
+    <p th:if="${! hasError}" th:text="'Student is saved with roll number' + ${student.rno} + '.'" style="font: bold;"></p>
+
+</body>
+</html>
